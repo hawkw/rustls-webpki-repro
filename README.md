@@ -16,7 +16,7 @@ certificates.
 ## expected output
 
 ```console
-:; cargo run
+$ cargo run
    Compiling rustls-webpki-repro v0.1.0 (/home/eliza/Code/rustls-webpki-repro)
     Finished dev [unoptimized + debuginfo] target(s) in 0.39s
      Running `target/debug/rustls-webpki-repro`

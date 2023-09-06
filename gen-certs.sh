@@ -27,9 +27,15 @@ ee() {
 
   hostname="${ee_name}.${ee_ns}.com"
 
+  cn=""
+  if [ "${4}" == "1" ]; then
+    cn="${hostname}"
+  fi
+
   ee="${ee_name}-${ee_ns}-${ca_name}"
   echo '{}' \
     | cfssl gencert -ca "${ca_name}.pem" \
+      -cn "${cn}" \
       -ca-key "${ca_name}-key.pem" \
       -hostname "${hostname}" -config="../ca-config.json" - \
     | cfssljson -bare "${ee}"
@@ -55,4 +61,5 @@ ee() {
 
 cd "${basedir}/testdata"
 ca 'Cluster-local CA 1' ca1
-ee ca1 foo test
+ee ca1 no-cn test 0
+ee ca1 cn test 1
